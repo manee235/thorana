@@ -240,7 +240,7 @@ export const Thorana = () => {
   }, []);
 
   return (
-    <group position={[0, -8, -35]} scale={4}>
+    <group position={[0, -8, -45]} scale={4}>
       <WavingPeacock
         position={[STORY_POSITIONS[5][0] - 1.5, STORY_POSITIONS[5][1], 0.3]}
         texture={peacockLeftTex}
