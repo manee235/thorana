@@ -66,10 +66,7 @@ const Lantern = ({ startX, startZ, riseSpeed, swayOffset, startY, scale }: any) 
 
 const Lanterns = ({ count = 35 }) => {
   const lanterns = useMemo(() => {
-    return Array.from({ length: count }).map((_, i) => {
-      // Random angle & distance from thorana center — no orbit, just starting position
-      const angle = (i / count) * Math.PI * 2 + Math.random() * 0.5;
-      const spread = 4 + Math.random() * 6; // 4–10 units from center
+    return Array.from({ length: count }).map((_) => {
       return {
         startX: THORANA_CENTER.x + (Math.random() - 0.5) * 25,
         startZ: THORANA_CENTER.z + 2 + Math.random() * 12, // Between -10 and 0 relative to camera
