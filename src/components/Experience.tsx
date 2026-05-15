@@ -9,7 +9,7 @@ import {
 import { EffectComposer, Bloom, Vignette, Noise } from '@react-three/postprocessing';
 import * as THREE from 'three';
 import { Thorana } from './Thorana';
-import { DotLottiePlayer } from '@dotlottie/react-player';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 import bgPana from '../assets/bg pana.png';
 import songUrl from '../assets/song.mp3';
@@ -188,7 +188,7 @@ export const Experience = () => {
             
             <div className="load-badge">
               <div className="view-360-msg" style={{ marginTop: '2rem', background: 'transparent', border: 'none', boxShadow: 'none' }}>
-                <DotLottiePlayer
+                <DotLottieReact
                   src="https://lottie.host/ee03a083-4c71-4c0b-a41a-328f711d3d58/mFARL9xdeQ.lottie"
                   autoplay
                   loop
@@ -299,7 +299,7 @@ export const Experience = () => {
           <p className="subtitle" style={{ fontSize: 'clamp(0.9rem, 2vw, 1.2rem)' }}>Department of Information Technology | SLIATE</p>
           
           <div className="view-360-msg" style={{ margin: '3rem auto 0 auto', background: 'rgba(255,255,255,0.05)' }}>
-            <DotLottiePlayer
+            <DotLottieReact
               src="https://lottie.host/ee03a083-4c71-4c0b-a41a-328f711d3d58/mFARL9xdeQ.lottie"
               autoplay
               loop
