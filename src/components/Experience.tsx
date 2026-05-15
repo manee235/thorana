@@ -148,6 +148,7 @@ export const Experience = () => {
   const [isMuted, setIsMuted] = useState(false);
   const [loading, setLoading] = useState(true);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const storySectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 6000);
@@ -278,12 +279,27 @@ export const Experience = () => {
               </svg>
             )}
           </button>
+
+          <button
+            className="scroll-down-btn"
+            onClick={() => {
+              storySectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            aria-label="Scroll to story"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
+              <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+            </svg>
+          </button>
+
           <audio ref={audioRef} src={songUrl} loop autoPlay />
 
         </div>
       </div>
       {/* ── STORY SECTION ── */}
-      <section style={{
+      <section
+        ref={storySectionRef}
+        style={{
         background: '#000',
         padding: '8rem 1.5rem',
         minHeight: '100vh',
