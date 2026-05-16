@@ -64,6 +64,7 @@ body {
   line-height: 1.1;
   letter-spacing: -0.03em;
   text-transform: uppercase;
+  text-align: center;
 }
 
 .subtitle {
@@ -73,6 +74,7 @@ body {
   letter-spacing: 0.15em;
   text-transform: uppercase;
   font-weight: 500;
+  text-align: center;
 }
 
 .view-360-msg {
@@ -126,77 +128,129 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 9999;
+  transition: opacity 0.8s ease-in-out, visibility 0.8s;
+}
+
+.loading-screen.finished {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .loading-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  width: 90%;
+  max-width: 400px;
+  gap: 2rem;
+}
+
+.loading-progress-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #b8860b, #f5c842, #b8860b);
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+  transition: width 0.4s ease-out;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(245, 200, 66, 0.3);
+}
+
+.progress-text {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #f5c842;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; transform: scale(0.98); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+.enter-button {
+  background: transparent;
+  border: 1px solid #b8860b;
+  color: #f5c842;
+  padding: 0.8rem 2.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.enter-button:hover {
+  background: #b8860b;
+  color: #000;
+  box-shadow: 0 0 20px rgba(184, 134, 11, 0.4);
+  transform: translateY(-2px);
 }
 
 .load-title {
-  opacity: 0;
-  animation: loadFade 5.5s ease-in-out forwards;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeInUp 1s ease-out forwards;
 }
 
-.load-badge {
-  opacity: 0;
-  animation: loadFadeDelayed 5.5s ease-in-out forwards;
+.load-title h1 {
+  animation: fadeInUp 1s ease-out 0.2s both;
 }
 
-@keyframes loadFade {
-  0% {
+.load-title p {
+  animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+@keyframes fadeInUp {
+  from {
     opacity: 0;
-    transform: scale(0.98);
-    filter: blur(10px);
+    transform: translateY(20px);
+    filter: blur(5px);
   }
-
-  15% {
+  to {
     opacity: 1;
-    transform: scale(1);
+    transform: translateY(0);
     filter: blur(0);
   }
-
-  85% {
-    opacity: 1;
-    transform: scale(1);
-    filter: blur(0);
-  }
-
-  100% {
-    opacity: 0;
-    transform: scale(1.02);
-    filter: blur(10px);
-  }
 }
 
-@keyframes loadFadeDelayed {
-  0% {
-    opacity: 0;
-    transform: scale(0.95);
-  }
+@keyframes shimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
 
-  35% {
-    opacity: 0;
-    transform: scale(0.95);
-  }
+.fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
 
-  /* Wait for title */
-  50% {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  85% {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  100% {
-    opacity: 0;
-    transform: scale(1.02);
-  }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .scroll-down-btn {

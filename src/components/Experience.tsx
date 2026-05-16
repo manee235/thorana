@@ -9,6 +9,7 @@ import {
 import { EffectComposer, Bloom, Vignette, Noise } from '@react-three/postprocessing';
 import * as THREE from 'three';
 import { Thorana } from './Thorana';
+import { Loader } from './Loader';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 import bgPana from '../assets/bg pana.png';
@@ -150,22 +151,23 @@ export const Experience = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const storySectionRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 6000);
-    return () => clearTimeout(timer);
-  }, []);
+  const startExperience = () => {
+    setLoading(false);
+    if (audioRef.current) {
+      audioRef.current.play().catch(e => console.log("Audio playback failed:", e));
+    }
+  };
 
   useEffect(() => {
+    // We still keep the click listener as a backup for audio
     const playAudio = () => {
-      if (audioRef.current) {
+      if (audioRef.current && !loading) {
         audioRef.current.play().catch(e => console.log("Autoplay blocked:", e));
       }
     };
-    playAudio();
-    // Some browsers require interaction, so we can also add a one-time click listener to document
     document.addEventListener('click', playAudio, { once: true });
     return () => document.removeEventListener('click', playAudio);
-  }, []);
+  }, [loading]);
 
   const toggleMute = () => {
     if (audioRef.current) {
@@ -176,28 +178,7 @@ export const Experience = () => {
 
   return (
     <div style={{ width: '100vw', background: '#000' }}>
-      {loading && (
-        <div className="loading-screen">
-          <div className="loading-content">
-            <div className="load-title" style={{ textAlign: 'center' }}>
-              <h1 className="title" style={{ fontSize: 'clamp(1.5rem, 4vw, 2.8rem)' }}>Digital Vesak Thorana</h1>
-              <p className="subtitle" style={{ color: 'rgba(255,255,255,0.5)', marginTop: '1rem' }}>Department of Information Technology | SLIATE</p>
-            </div>
-            
-            <div className="load-badge">
-              <div className="view-360-msg" style={{ marginTop: '2rem', background: 'transparent', border: 'none', boxShadow: 'none' }}>
-                <DotLottieReact
-                  src="https://lottie.host/ee03a083-4c71-4c0b-a41a-328f711d3d58/mFARL9xdeQ.lottie"
-                  autoplay
-                  loop
-                  style={{ height: '60px', width: '60px' }}
-                />
-                <span style={{ fontSize: '0.8rem', letterSpacing: '0.2em' }}>360° INTERACTIVE VIEW ENABLED</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {loading && <Loader onEnter={startExperience} />}
       <div style={{ width: '100vw', height: '100vh', position: 'relative' }}>
         <Canvas shadows gl={{ antialias: true, stencil: false }}>
           <Suspense fallback={null}>
@@ -292,7 +273,7 @@ export const Experience = () => {
             </svg>
           </button>
 
-          <audio ref={audioRef} src={songUrl} loop autoPlay />
+          <audio ref={audioRef} src={songUrl} loop />
 
         </div>
       </div>
@@ -300,17 +281,17 @@ export const Experience = () => {
       <section
         ref={storySectionRef}
         style={{
-        background: '#000',
-        padding: '8rem 1.5rem',
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center'
-      }}>
+          background: '#000',
+          padding: '8rem 1.5rem',
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center'
+        }}>
         <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
           <h1 className="title" style={{ fontSize: 'clamp(2.5rem, 6vw, 4rem)', marginBottom: '0.5rem' }}>Digital Vesak Thorana</h1>
           <p className="subtitle" style={{ fontSize: 'clamp(0.9rem, 2vw, 1.2rem)' }}>Department of Information Technology | SLIATE</p>
-          
+
           <div className="view-360-msg" style={{ margin: '3rem auto 0 auto', background: 'rgba(255,255,255,0.05)' }}>
             <DotLottieReact
               src="https://lottie.host/ee03a083-4c71-4c0b-a41a-328f711d3d58/mFARL9xdeQ.lottie"
