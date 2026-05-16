@@ -17,8 +17,7 @@ import bgPana from '../assets/bg pana.png';
 import songUrl from '../assets/song.mp3';
 import lanternUrl from '../assets/lantern.glb';
 import logoH from '../assets/logo h.png';
-import hnditLogo from '../assets/hndit.png';
-import brandLogo from '../assets/logo.png';
+
 
 const Panorama = () => {
   // Load the equirectangular texture
