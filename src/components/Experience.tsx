@@ -11,6 +11,7 @@ import * as THREE from 'three';
 import { Thorana } from './Thorana';
 import { Loader } from './Loader';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { Icon } from '@iconify/react';
 
 import bgPana from '../assets/bg pana.png';
 import songUrl from '../assets/song.mp3';
@@ -222,7 +223,7 @@ export const Experience = () => {
 
         <div className="overlay">
           <div style={{ position: 'absolute', top: '2rem', left: '2rem', zIndex: 100, pointerEvents: 'auto' }}>
-            <img src={brandLogo} alt="Brand Logo" style={{ height: '35px', filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.5))', opacity: 0.9 }} />
+            <img src={logoH} alt="Brand Logo" style={{ height: '50px', filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.5))', opacity: 0.9 }} />
           </div>
           {/* Removed header as per request */}
 
@@ -290,9 +291,11 @@ export const Experience = () => {
         }}>
         <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
           <h1 className="title" style={{ fontSize: 'clamp(2.5rem, 6vw, 4rem)', marginBottom: '0.5rem' }}>Digital Vesak Thorana</h1>
-          <p className="subtitle" style={{ fontSize: 'clamp(0.9rem, 2vw, 1.2rem)' }}>Department of Information Technology | SLIATE</p>
+          <p className="subtitle" style={{ fontSize: 'clamp(0.9rem, 2vw, 1.2rem)', maxWidth: 'none' }}>
+            Department of Information Technology <br /> SLIATE | KURUNEGALA
+          </p>
 
-          <div className="view-360-msg" style={{ margin: '3rem auto 0 auto', background: 'rgba(255,255,255,0.05)' }}>
+          <div className="view-360-msg" style={{ margin: '3rem auto 0 auto', background: 'none' }}>
             <DotLottieReact
               src="https://lottie.host/ee03a083-4c71-4c0b-a41a-328f711d3d58/mFARL9xdeQ.lottie"
               autoplay
@@ -317,12 +320,19 @@ export const Experience = () => {
             color: '#f5c842',
             marginBottom: '0.4rem',
             letterSpacing: '0.02em',
+            textAlign: 'center'
           }}>ස්වර්ණ මයුර ජාතකය</h2>
-          <p style={{ color: '#aaa', marginBottom: '2rem', fontFamily: 'sans-serif', fontSize: '0.95rem' }}>
+          <p style={{
+            color: '#aaa',
+            marginBottom: '2rem',
+            fontFamily: 'sans-serif',
+            fontSize: '0.95rem',
+            textAlign: 'center'
+          }}>
             Swarna Mayura Jathakaya
           </p>
 
-          <div style={{
+          <div className="story-description" style={{
             fontSize: 'clamp(1rem, 2vw, 1.15rem)',
             lineHeight: '2',
             color: 'rgba(255,255,255,0.88)',
@@ -359,17 +369,8 @@ export const Experience = () => {
       }}>
 
         <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', justifyContent: 'center', marginBottom: '2rem' }}>
-            <div style={{ flex: 1, height: '1px', background: 'rgba(184,134,11,0.4)' }} />
-            <span style={{ color: '#b8860b', fontSize: '1.2rem' }}>☸</span>
-            <div style={{ flex: 1, height: '1px', background: 'rgba(184,134,11,0.4)' }} />
-          </div>
 
-          <h3 style={{ color: '#f5c842', fontSize: '1rem', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1.5rem' }}>
-            Credits
-          </h3>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem', fontSize: '0.9rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem', fontSize: '0.9rem', marginBottom: '2.5rem' }}>
             <div>
               <span style={{ color: 'rgba(255,255,255,0.4)' }}>Designed & Developed by </span>
               <span style={{ color: '#fff', fontWeight: 600 }}>Maneesh Amindu</span>
@@ -379,18 +380,30 @@ export const Experience = () => {
               <span style={{ color: 'rgba(255,255,255,0.4)' }}>Department of </span>
               <span style={{ color: '#fff' }}>Information Technology</span>
             </div>
-            <div style={{ color: 'rgba(255,255,255,0.4)' }}>SLIATE</div>
-            <div style={{ marginTop: '2rem', opacity: 0.8, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '3rem' }}>
-              <img src={logoH} alt="Logo" style={{ height: '55px', filter: 'brightness(1.1)' }} />
-              <img src={hnditLogo} alt="HNDIT Logo" style={{ height: '55px', filter: 'brightness(1.1)' }} />
-            </div>
+            <div style={{ color: 'rgba(255,255,255,0.4)' }}>SLIATE Kurunegala</div>
           </div>
 
-          <p style={{ marginTop: '2.5rem', fontSize: '0.75rem', color: 'rgba(255,255,255,0.2)', letterSpacing: '0.05em' }}>
-            Digital Vesak Thorana · {new Date().getFullYear()}
-          </p>
+          <div className="footer-socials">
+            <a href="https://github.com/manee235" target="_blank" rel="noopener noreferrer" className="social-icon">
+              <Icon icon="mdi:github" />
+            </a>
+            <a href="https://facebook.com/maneesh.ganegoda.2025/" target="_blank" rel="noopener noreferrer" className="social-icon">
+              <Icon icon="mdi:facebook" />
+            </a>
+            <a href="https://www.instagram.com/only.maneesh/" target="_blank" rel="noopener noreferrer" className="social-icon">
+              <Icon icon="mdi:instagram" />
+            </a>
+            <a href="https://www.linkedin.com/in/maneesh-amindu-05095b281/" target="_blank" rel="noopener noreferrer" className="social-icon">
+              <Icon icon="mdi:linkedin" />
+            </a>
+          </div>
+
         </div>
+
+        <p style={{ marginTop: '2.5rem', fontSize: '0.75rem', color: 'rgba(255,255,255,0.2)', letterSpacing: '0.05em' }}>
+          Digital Vesak Thorana · {new Date().getFullYear()}
+        </p>
       </footer>
-    </div >
+    </div>
   );
 };
